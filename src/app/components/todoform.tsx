@@ -3,6 +3,7 @@
 import { FormEvent } from "react";
 
 interface TodoFormProps {
+  editingID:number | null;
   title: string;
   setTitle: (val: string) => void;
   description: string;
@@ -14,6 +15,7 @@ interface TodoFormProps {
 }
 
 export default function TodoForm({
+  editingID,
   title,
   setTitle,
   description,
@@ -59,7 +61,7 @@ export default function TodoForm({
             type="submit"
             className="bg-gray-600 hover:bg-blend-darken text-white font-semibold px-6 py-2.5 rounded-lg text-sm transition-all duration-150 hover:scale-[1.03] hover:shadow-md active:scale-95 cursor-pointer"
           >
-            Create To-Do
+            {editingID? 'Edit To-Do':'Create To-Do'}
           </button>
           <button
             type="button"

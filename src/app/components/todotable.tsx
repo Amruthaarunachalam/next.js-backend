@@ -9,9 +9,11 @@ interface Todo {
 
 interface TodoTableProps {
   todos: Todo[];
+  onEdit:(todos:Todo)=>void;
+  onDelete:(id:number)=>void;
 }
 
-export default function TodoTable({ todos }: TodoTableProps) {
+export default function TodoTable({ todos, onEdit,onDelete }: TodoTableProps) {
   return (
     <table className="w-full text-left border-collapse border border-gray-300 text-sm">
       <thead>
@@ -20,6 +22,7 @@ export default function TodoTable({ todos }: TodoTableProps) {
           <th className="p-2 border border-gray-300">Title</th>
           <th className="p-2 border border-gray-300">Description</th>
           <th className="p-2 border border-gray-300">Status</th>
+          <th className="p-2 border border-gray-300">Edit/Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -33,6 +36,13 @@ export default function TodoTable({ todos }: TodoTableProps) {
             <td className="p-2 border border-gray-300">
               {t.status ? "Completed" : "Pending"}
             </td>
+            <td><button onClick={() =>onEdit(t) }
+              className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-1.5 rounded-sm text-sm  transition-colors cursor-pointer hover:scale-105">
+                Edit</button>
+            <button onClick={() =>onDelete(t.id)}
+              className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 py-1.5 rounded-sm text-sm transition-colors cursor-pointer hover:scale-105">
+                Delete
+              </button></td>
           </tr>
         ))}
       </tbody>
