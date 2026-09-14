@@ -18,7 +18,6 @@ export default function Dashboard() {
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const [todo, setTodo] = useState<Todo[]>([]);
-  // Form states
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState<boolean>(false);
@@ -104,23 +103,30 @@ export default function Dashboard() {
     }
   };
 
+  
+  const pendingTodos = todo.filter((item) => !item.status);
+  const completedTodos = todo.filter((item) => item.status);
+
   return (
-    <div className="space-y-8">
-      <div className="mb-6">
-        <h2 className="text-xl font-bold mb-3 text-gray-800 uppercase font-sans text-center">
-          To-Do
+    <div className="space-y-8 p-6 max-w-6xl mx-auto">
+      {/* Header */}
+      <div className="flex flex-col items-center mb-6">
+        <h2 className="text-2xl font-bold mb-3 text-gray-800 uppercase font-sans">
+          Task Dashboard
         </h2>
+         </div>
+       <div className="flex justify-end">
         <button
           onClick={() => {
             resetForm();
             setIsOpen(true);
           }}
-          className="px-4 py-2 bg-gray-400 text-sm text-white rounded-sm overflow-hidden shadow-md hover:bg-gray-500 cursor-pointer hover:scale-95 transition-transform"
+          className="px-4 py-2 bg-gray-600 text-sm text-white rounded-md shadow hover:bg-gray-700 transition-all cursor-pointer"
         >
-          + Add new Todo
+          + Add New Todo
         </button>
-      </div>
-
+       </div>
+      {/* Shared Modal */}
       <Modal
         isOpen={isOpen}
         onClose={resetForm}
@@ -132,13 +138,13 @@ export default function Dashboard() {
             <div className="flex justify-end space-x-3 pt-4">
               <button
                 onClick={() => handleDelete(deletingId)}
-                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 cursor-pointer hover:scale-105"
+                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 cursor-pointer"
               >
                 Confirm
               </button>
               <button
                 onClick={resetForm}
-                className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 cursor-pointer hover:scale-105"
+                className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 cursor-pointer"
               >
                 Cancel
               </button>
@@ -159,18 +165,39 @@ export default function Dashboard() {
         )}
       </Modal>
 
-      <div>
-        <h4 className="text-xl font-bold mb-4 text-gray-800 uppercase font-sans">
-          To-Do List
-        </h4>
-        {todo.length === 0 ? (
-          <div className="p-8 bg-white rounded-xl text-center text-gray-500">
-            No Task to do right now!
+      {/* Pending Tasks */}
+      <div className="space-y-3">
+        <h3 className="text-lg font-bold text-gray-700 uppercase tracking-wide">
+          Pending Tasks ({pendingTodos.length})
+        </h3>
+        {pendingTodos.length === 0 ? (
+          <div className="p-6 bg-white rounded-lg border border-gray-200 text-center text-gray-500 text-sm">
+            No pending tasks!
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <TodoTable todos={todo} onEdit={handleEdit} onDelete={handleDeleteClick} />
+          <TodoTable
+            todos={pendingTodos}
+            onEdit={handleEdit}
+            onDelete={handleDeleteClick}
+          />
+        )}
+      </div>
+
+      {/*  Completed Tasks */}
+      <div className="space-y-3">
+        <h3 className="text-lg font-bold text-emerald-700 uppercase tracking-wide">
+          Completed Tasks ({completedTodos.length})
+        </h3>
+        {completedTodos.length === 0 ? (
+          <div className="p-6 bg-white rounded-lg border border-gray-200 text-center text-gray-500 text-sm">
+            No completed tasks yet.
           </div>
+        ) : (
+          <TodoTable
+            todos={completedTodos}
+            onEdit={handleEdit}
+            onDelete={handleDeleteClick}
+          />
         )}
       </div>
     </div>
