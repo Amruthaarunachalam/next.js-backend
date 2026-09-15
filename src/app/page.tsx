@@ -4,6 +4,7 @@ import { useState, useEffect, FormEvent } from 'react';
 import TodoForm from './components/todoform';
 import Modal from './components/modal';
 import TodoTable from './components/todotable';
+import ThemeToggle from './components/themeToggle';
 
 interface Todo {
   id: number;
@@ -111,7 +112,7 @@ export default function Dashboard() {
     <div className="space-y-8 p-6 max-w-6xl mx-auto">
       {/* Header */}
       <div className="flex flex-col items-center mb-6">
-        <h2 className="text-2xl font-bold mb-3 text-gray-800 uppercase font-sans">
+        <h2 className="text-2xl font-bold mb-3 dark:text-white text-gray-800 uppercase font-sans">
           Task Dashboard
         </h2>
          </div>
@@ -121,10 +122,11 @@ export default function Dashboard() {
             resetForm();
             setIsOpen(true);
           }}
-          className="px-4 py-2 bg-gray-600 text-sm text-white rounded-md shadow hover:bg-gray-700 transition-all cursor-pointer"
+          className="px-4 py-2 bg-gray-600 text-sm  text-white rounded-md shadow hover:bg-gray-700 transition-all cursor-pointer"
         >
           + Add New Todo
         </button>
+        <ThemeToggle/>
        </div>
       {/* Shared Modal */}
       <Modal
@@ -167,7 +169,7 @@ export default function Dashboard() {
 
       {/* Pending Tasks */}
       <div className="space-y-3">
-        <h3 className="text-lg font-bold text-gray-700 uppercase tracking-wide">
+        <h3 className="text-lg font-bold text-gray-700 uppercase tracking-wide dark:text-white">
           Pending Tasks ({pendingTodos.length})
         </h3>
         {pendingTodos.length === 0 ? (
@@ -185,7 +187,7 @@ export default function Dashboard() {
 
       {/*  Completed Tasks */}
       <div className="space-y-3">
-        <h3 className="text-lg font-bold text-emerald-700 uppercase tracking-wide">
+        <h3 className="text-lg font-bold text-emerald-700 uppercase tracking-wide dark:text-green-400">
           Completed Tasks ({completedTodos.length})
         </h3>
         {completedTodos.length === 0 ? (
