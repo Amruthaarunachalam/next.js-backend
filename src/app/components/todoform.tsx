@@ -26,7 +26,7 @@ export default function TodoForm({
   onReset
 }: TodoFormProps) {
   return (
-    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 dark:bg-gray-800 dark:border">
       <form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <input
           type="text"
@@ -34,14 +34,16 @@ export default function TodoForm({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
-          className="px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white placeholder:text-gray-400 shadow-sm transition-all duration-150 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white placeholder:text-gray-400 shadow-sm transition-all duration-150 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500
+          dark:bg-gray-800  dark:focus:ring-gray-200 dark:focus:border-gray-200"
         />
 
       
         <select
           value={status ? "true" : "false"}
           onChange={(e) => setStatus(e.target.value === "true")}
-          className="px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white text-gray-700 shadow-sm transition-all duration-150 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="px-3 py-2 border border-gray-300 rounded-lg text-sm dark:bg-gray-800 bg-white text-gray-700 dark:text-white shadow-sm transition-all duration-150 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500
+          dark:focus:ring-gray-200 dark:focus:border-gray-200"
         >
           <option value="false">Pending (False)</option>
           <option value="true">Completed (True)</option>
@@ -51,7 +53,8 @@ export default function TodoForm({
           placeholder="Description..."
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="md:col-span-3 px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white placeholder:text-gray-400 shadow-sm transition-all duration-150 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+          className="md:col-span-3 px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white placeholder:text-gray-400 shadow-sm transition-all duration-150  hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500
+           dark:bg-gray-800  dark:focus:ring-gray-200 dark:focus:border-gray-200 resize-none"
           rows={2}
         />
 
