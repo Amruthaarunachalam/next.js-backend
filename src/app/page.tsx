@@ -111,11 +111,18 @@ export default function Dashboard() {
   return (
     <div className="space-y-8 p-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col items-center mb-6">
-        <h2 className="text-2xl font-bold mb-3 dark:text-white text-gray-800 uppercase font-sans">
-          Task Dashboard
-        </h2>
-         </div>
+     
+   <header className="grid grid-cols-3 items-center pb-4 border-b border-gray-200 dark:border-gray-700">
+    
+     <div></div>
+
+  <h2 className="text-2xl font-bold dark:text-white text-gray-800 uppercase font-sans text-center">
+    Task Dashboard
+  </h2>
+  <div className="flex justify-end">
+    <ThemeToggle />
+  </div>
+</header>
        <div className="flex justify-end">
         <button
           onClick={() => {
@@ -126,7 +133,6 @@ export default function Dashboard() {
         >
           + Add New Todo
         </button>
-        <ThemeToggle/>
        </div>
       {/* Shared Modal */}
       <Modal
