@@ -10,4 +10,5 @@ model Todo {
     title       String
     description String?
     status      Boolean @default(false)
+    createdAt   DateTime @default(now())
 }
