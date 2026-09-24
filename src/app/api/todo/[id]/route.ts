@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createTodo } from "@/schema/todo"; 
-import { prisma } from "@/lib/prisma";
+import { db } from "@/db/pg/client";
+import { eq } from 'drizzle-orm';
+import { todo } from "@/db/schema/todo";
 
 export async function GET(
     request:NextRequest,
@@ -9,7 +11,7 @@ export async function GET(
   try{
     const strid =await params;
     const id=Number(strid.id)
-    const data=await prisma.todo.findUnique({where:{id}})
+    const data=await db.select().from(todo).where(eq(todo.id,id))
     if (!data){
         return NextResponse.json({ error: `the ${id} is not found` }, { status: 404 });
     }
@@ -36,11 +38,11 @@ export async function PUT(
         { status: 400 }
       ); }
 
-       const ExisingData=await prisma.todo.findUnique({where:{id}})
+       const ExisingData=await db.select().from(todo).where(eq(todo.id,id))
        if (! ExisingData){
         return NextResponse.json({ error: `the ${id} is not found` }, { status: 404 });
        }
-       const updateData=await prisma.todo.update({where:{id},data:validate.data})
+       const updateData=await db.update(todo).set(validate.data).where(eq(todo.id,id)).returning()
 
        return NextResponse.json(updateData)
     
@@ -61,13 +63,13 @@ export async function DELETE(
     const strid =await params;
     const id=Number(strid.id)
 
-     const ExisingData=await prisma.todo.findUnique({where:{id}})
+     const ExisingData=await db.select().from(todo).where(eq(todo.id,id))
 
        if (! ExisingData){
         return NextResponse.json({ error: `the ${id} is not found` }, { status: 404 });
        }
     
-       const deleteData = await prisma.todo.delete({where:{id}})
+       const deleteData = await db.delete(todo).where(eq(todo.id,id))
        return  NextResponse.json({ message: `the ${id} is deleted` }, { status: 200 })
 
         }catch{        
