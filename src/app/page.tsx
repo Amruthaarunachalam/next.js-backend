@@ -109,20 +109,13 @@ export default function Dashboard() {
   const completedTodos = todo.filter((item) => item.status);
 
   return (
-    <div className="space-y-8 p-6 max-w-6xl mx-auto">
-      {/* Header */}
-     
-   <header className="grid grid-cols-3 items-center pb-4 border-b border-gray-200 dark:border-gray-700">
-    
-     <div></div>
+    <div className="space-y-8  max-w-6xl mx-auto">
 
-  <h2 className="text-2xl font-bold dark:text-white text-gray-800 uppercase font-sans text-center">
-    Task Dashboard
-  </h2>
-  <div className="flex justify-end">
-    <ThemeToggle />
-  </div>
-</header>
+         <h1 className="text-2xl font-bold dark:text-white text-gray-800 uppercase font-sans text-center">
+                Task Dashboard
+              </h1>
+      
+
        <div className="flex justify-end">
         <button
           onClick={() => {
