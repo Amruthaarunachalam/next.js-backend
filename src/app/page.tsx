@@ -6,6 +6,7 @@ import Modal from './components/modal';
 import TodoTable from './components/todotable';
 import ThemeToggle from './components/themeToggle';
 
+
 interface Todo {
   id: number;
   title: string;
@@ -22,6 +23,8 @@ export default function Dashboard() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState<boolean>(false);
+
+ 
 
   useEffect(() => {
     fetchTodo();
@@ -111,9 +114,10 @@ export default function Dashboard() {
   return (
     <div className="space-y-8  max-w-6xl mx-auto">
 
-         <h1 className="text-2xl font-bold dark:text-white text-gray-800 uppercase font-sans text-center">
-                Task Dashboard
-              </h1>
+         
+           <h1 className="text-2xl font-bold dark:text-white text-gray-800 uppercase font-sans text-center">
+             Task Dashboard </h1>   
+             
       
 
        <div className="flex justify-end">
