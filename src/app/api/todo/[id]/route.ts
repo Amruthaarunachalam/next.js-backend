@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createTodo } from "@/schema/todo"; 
+import { createTodo } from "@/validation/todo"; 
 import { db } from "@/db/pg/client";
 import { eq } from 'drizzle-orm';
 import { todo } from "@/db/schema/todo";

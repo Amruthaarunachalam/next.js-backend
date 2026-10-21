@@ -1,3 +1,1 @@
-import { relations } from "drizzle-orm/relations";
-import {  } from "./schema";
-
+// No relations defined — single Todo table, no foreign keys.
