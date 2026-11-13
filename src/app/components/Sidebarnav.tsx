@@ -33,7 +33,7 @@ export default function SidebarNav() {
   return (
     <nav className="space-y-1">
       <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-        Management
+        Quick Links
       </div>
 
       <Link href="/" className={linkClass('/')}>
@@ -53,6 +53,24 @@ export default function SidebarNav() {
         </svg>
         <span>Dashboard</span>
       </Link>
+      
+     <Link href="/chat" className={linkClass('/chat')}>
+  <svg
+    className="h-5 w-5"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth="1.5"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM12 21a9 9 0 10-8.172-5.25L3 21l5.25-.828A8.96 8.96 0 0012 21z"
+    />
+  </svg>
+  <span>Chat</span>
+</Link>
 
       {/* My Learnings collapsible group */}
       <div>

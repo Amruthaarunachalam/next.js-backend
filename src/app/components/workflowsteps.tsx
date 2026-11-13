@@ -24,7 +24,7 @@ export function WorkflowSteps({ steps }: { steps: WorkflowStep[] }) {
                 <img
                   src={step.imgUrl}
                   alt={step.title}
-                  className="w-full h-auto object-contain"
+                  className="max-w-md h-auto object-contain"
                 />
               </div>
             )}

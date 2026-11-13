@@ -24,6 +24,14 @@ export default function Breadcrumb() {
     );
   }
 
+  if (pathname === '/chat') {
+    return (
+      <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
+        Chat
+      </span>
+    );
+  }
+
   const pageLabel = learningPages[pathname];
 
   // Unknown route: render nothing rather than a broken breadcrumb
